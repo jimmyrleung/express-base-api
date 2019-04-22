@@ -1,0 +1,29 @@
+{
+  "name": "express-base-api",
+  "version": "1.0.0",
+  "description": "Express api starting point",
+  "main": "main.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "set NODE_ENV=development && node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmyrleung/express-base-api.git"
+  },
+  "keywords": [
+    "express",
+    "base",
+    "api"
+  ],
+  "author": "Jimmy Rios Leung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jimmyrleung/express-base-api/issues"
+  },
+  "homepage": "https://github.com/jimmyrleung/express-base-api#readme"
+}
