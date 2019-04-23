@@ -3,13 +3,18 @@ const init = require('./src/express'),
 
 register();
 
-async function testRedis() {
-    await set('test-key', 'test');
+async function testRedisConnection() {
+    try {
+        await set('test-key', 'test');
 
-    const testValue = await get('test-key');
-    console.log(testValue);
+        const testValue = await get('test-key');
+        console.log(testValue);
+    }
+    catch (ex) {
+        console.log(`Couldn't test redis connection: ${ex}`);
+    }
 }
 
-testRedis();
+testRedisConnection();
 
 init();
