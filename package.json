@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "set NODE_ENV=development && node main.js",
+    "eslint": "npx eslint src main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
