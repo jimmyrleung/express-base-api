@@ -6,7 +6,11 @@
   "dependencies": {
     "express": "^4.16.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2"
+  },
   "scripts": {
     "start": "set NODE_ENV=development && node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
