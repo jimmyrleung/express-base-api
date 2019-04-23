@@ -16,6 +16,9 @@
         "no-duplicate-imports": "error",
         "no-console": "warn",
         "linebreak-style": 0,
+        "no-unused-expressions": "warn",
+        "no-unused-labels": "warn",
+        "no-unused-vars": "warn",
         "semi": [
             2
         ],
