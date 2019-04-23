@@ -4,7 +4,8 @@
   "description": "Express api starting point",
   "main": "main.js",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
