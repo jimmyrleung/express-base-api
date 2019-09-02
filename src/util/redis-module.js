@@ -1,7 +1,7 @@
 const redis = require('redis'),
-    config = require('../config/config'),
-    REDIS_KEY = Symbol.for(config.SYMBOLS.redis),
-    client = redis.createClient({ port: config.REDIS_CONFIG.port });
+    { redisConfig } = require('../config'),
+    REDIS_KEY = Symbol.for(redisConfig.SYMBOL),
+    client = redis.createClient({ port: redisConfig.PORT });
 
 module.exports = {
     register: () => {

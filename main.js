@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const init = require('./src/express'),
     { register, set, get } = require('./src/util/redis-module');
 
