@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const init = require('./src/express'),
-    redisModule = require('./src/util/redis-module');
+    { redisModule } = require('./src/util');
 
 redisModule.register();
 redisModule.testConnection();
