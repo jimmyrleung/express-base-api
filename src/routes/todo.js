@@ -1,5 +1,5 @@
 const { routes } = require('../constants');
-const { todoController } = require('../domain/todo');
+const { todoController } = require('../domain/todos');
 
 module.exports = (express) => {
     express.route(routes.TODOS_URL)

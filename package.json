@@ -16,7 +16,8 @@
     "eslint-plugin-import": "^2.17.2"
   },
   "scripts": {
-    "start": "set NODE_ENV=development && node main.js",
+    "start": "set NODE_ENV=development&& node main.js",
+    "docker": "set NODE_ENV=docker&& node --inspect=0.0.0.0:9229 main.js",
     "eslint": "npx eslint src main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

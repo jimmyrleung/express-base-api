@@ -1,7 +1,7 @@
 const redis = require('redis'),
     { redisConfig } = require('../config'),
     REDIS_KEY = Symbol.for(redisConfig.SYMBOL),
-    client = redis.createClient({ port: redisConfig.PORT });
+    client = redis.createClient({ port: redisConfig.PORT, host: redisConfig.HOST });
 
 const register = () => {
     if (!global[REDIS_KEY]) {

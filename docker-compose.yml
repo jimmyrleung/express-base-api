@@ -1,0 +1,29 @@
+version: "3.6"
+services:
+  api:
+    build: .
+    image: express-base-api
+    env_file:
+      - docker.env
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - redis
+      - mongo
+  redis:
+    image: redis
+    volumes:
+      - "C:/volumes/redis_docker/data:/data"
+    ports:
+      - 6379:6379
+    command: redis-server
+  mongo:
+    image: mongo
+    environment:
+    - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+    - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - "C:/volumes/mongodb_docker/data:/data"
+    ports:
+      - 27017:27017
