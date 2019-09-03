@@ -14,7 +14,7 @@ const login = async (credentials) => {
     if (user.password !== hash) return null;
 
     const token =
-        jwt.generate({ name: user.name, email: user.email });
+        jwt.generate({ _id: user._id, name: user.name, email: user.email });
 
     return token;
 

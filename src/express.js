@@ -3,8 +3,10 @@ const express = require('express');
 const app = express();
 const { serverConfig } = require('./config');
 const { registerRoutes } = require('./routes');
+const { authentication } = require('./middlewares');
 
 app.use(bodyParser.json());
+app.all('*', authentication);
 registerRoutes(app);
 
 module.exports = () => {

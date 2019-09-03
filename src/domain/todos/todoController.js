@@ -20,6 +20,7 @@ const getById = (req, res) => {
 }
 
 const create = async (req, res) => {
+    console.log("Req user", req.user)
     const todo = new Todo(req.body);
 
     if (!await todo.isValid()) {

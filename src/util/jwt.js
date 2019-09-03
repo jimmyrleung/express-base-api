@@ -18,6 +18,7 @@ const verify = (token) => {
         return { valid: true, decoded }
     }
     catch (err) {
+        console.log(err);
         return { valid: false, decoded: null }
     }
 }
