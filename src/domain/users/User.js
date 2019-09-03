@@ -1,13 +1,13 @@
 const yup = require('yup');
 
 module.exports = class User {
-    constructor({ name, email, password }) {
+    constructor({ name, email, password }, validatePassword = true) {
         this._name = name || '';
         this._email = email || '';
         this._password = password || '';
         this.errors = [];
 
-        this.schema = yup.object().shape({
+        let userShape = {
             name: yup.string()
                 .required()
                 .min('3', 'The field \'name\' must have at least 3 characters .')
@@ -17,11 +17,15 @@ module.exports = class User {
                 .matches(
                     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
                     'The field \'email\' isn\'t in a valid format.'
-                ),
+                )
+        }
+
+        if (validatePassword) {
             // TODO: define password regex
-            password: yup.string()
-                .required()
-        })
+            userShape.password = yup.string().required()
+        }
+
+        this.schema = yup.object().shape(userShape);
     }
 
     async isValid() {
