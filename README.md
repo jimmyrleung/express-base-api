@@ -1,7 +1,8 @@
 # Express base api
+
 Starting point for any express api.
 
-### Already implemented
+## Already implemented
 
 * App server listening on port 3000
 * Environment config using dotenv
@@ -9,7 +10,7 @@ Starting point for any express api.
 * Redis connection (no auth) as singleton
 * Import/exports barrel pattern with CommonJS :)
 
-### Coming up soon
+## Coming up soon
 
 * Basic authentication using JWT
 * Basic authorization with roles
@@ -19,7 +20,8 @@ Starting point for any express api.
 * Nginx configuration for the server
 * Logger
 * Docker setup
+* Mail system through message queuing
 
-#### Discarded
+### Discarded
 
 * Config per environment (I think that dotenv might be a cleaner and better solution)
