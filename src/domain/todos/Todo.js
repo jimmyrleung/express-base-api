@@ -8,11 +8,11 @@ module.exports = class Todo {
 
         this.schema = yup.object().shape({
             name: yup.string()
-                .required()
+                .required('The field \'name\' is required.')
                 .min('3', 'The field \'name\' must have at least 3 characters .')
                 .max('50', 'The field \'name\' must have at most 50 characters.'),
             description: yup.string()
-                .required()
+                .required('The field \'description\' is required.')
                 .min('3', 'The field \'description\' must have at least 3 characters .')
                 .max('200', 'The field \'description\' must have at most 200 characters.'),
         })

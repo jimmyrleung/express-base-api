@@ -1,31 +1,20 @@
 const yup = require('yup');
 
-module.exports = class User {
-    constructor({ name, email, password }, validatePassword = true) {
-        this._name = name || '';
+module.exports = class Auth {
+    constructor({ email, password }) {
         this._email = email || '';
         this._password = password || '';
         this.errors = [];
 
-        let userShape = {
-            name: yup.string()
-                .required('The field \'name\' is required.')
-                .min('3', 'The field \'name\' must have at least 3 characters.')
-                .max('50', 'The field \'name\' must have at most 50 characters.'),
+        this.schema = yup.object().shape({
             email: yup.string()
                 .required('The field \'email\' is required.')
                 .matches(
                     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
                     'The field \'email\' isn\'t in a valid format.'
-                )
-        }
-
-        if (validatePassword) {
-            // TODO: define password regex
-            userShape.password = yup.string().required()
-        }
-
-        this.schema = yup.object().shape(userShape);
+                ),
+            password: yup.string().required('The field \'password\' is required.')
+        });
     }
 
     async isValid() {
@@ -42,7 +31,6 @@ module.exports = class User {
 
     get values() {
         return {
-            name: this._name,
             email: this._email,
             password: this._password
         };
