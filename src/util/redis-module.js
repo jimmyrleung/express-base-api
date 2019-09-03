@@ -38,7 +38,7 @@ const testConnection = async () => {
         await set('test-key', 'test');
 
         const testValue = await get('test-key');
-        console.log(testValue);
+        console.log("Redis connection succeeded.");
     }
     catch (ex) {
         console.log(`Couldn't test redis connection: ${ex}`);
