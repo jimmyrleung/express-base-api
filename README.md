@@ -11,11 +11,11 @@ Starting point for any express api.
 * Import/exports barrel pattern with CommonJS :)
 * Docker setup
 * Domain-driven design
+* Basic authentication using JWT
+* Standardized error handling for api calls
 
 ## Coming up soon
 
-* Standardized error handling for api calls
-* Basic authentication using JWT
 * Basic authorization with roles
 * Jest basic configuration for unit and integration tests
 * Nginx configuration for the server

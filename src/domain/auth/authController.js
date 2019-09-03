@@ -1,5 +1,6 @@
 const Auth = require('./Auth');
 const authService = require('./authService');
+const { CustomErrorHandler } = require('../../util');
 
 const login = async (req, res) => {
     const credentials = new Auth(req.body);
@@ -10,15 +11,13 @@ const login = async (req, res) => {
         })
     }
 
-    const token = await authService.login(credentials.values);
-
-    if (!token) {
-        return res.status(400).json({
-            errors: [`Email or password invalid.`]
-        })
+    try {
+        const token = await authService.login(credentials.values);
+        res.json({ token });
+    } catch (err) {
+        console.log('Couldn\'t log the user in.', err);
+        CustomErrorHandler.handle(err, res);
     }
-
-    res.json({ token });
 }
 
 module.exports = {
