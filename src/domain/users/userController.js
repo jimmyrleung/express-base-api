@@ -1,6 +1,7 @@
 const User = require('./User');
 const userService = require('./userService');
 const { CustomErrorHandler } = require('../../util');
+const { userConstants } = require('../../constants');
 
 const create = async (req, res) => {
     const user = new User(req.body);
@@ -15,7 +16,7 @@ const create = async (req, res) => {
         await userService.create(user.values);
         res.status(201).json();
     } catch (err) {
-        console.log('Couldn\'t create a new user.', err);
+        console.log(userConstants.CREATE_USER_ERROR_MESSAGE, err);
         CustomErrorHandler.handle(err, res);
     }
 }

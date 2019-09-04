@@ -1,4 +1,5 @@
 const yup = require('yup');
+const { authConstants } = require('../../constants');
 
 module.exports = class Auth {
     constructor({ email, password }) {
@@ -8,12 +9,12 @@ module.exports = class Auth {
 
         this.schema = yup.object().shape({
             email: yup.string()
-                .required('The field \'email\' is required.')
+                .required(authConstants.AUTH_EMAIL_REQUIRED_MESSAGE)
                 .matches(
                     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
-                    'The field \'email\' isn\'t in a valid format.'
+                    authConstants.AUTH_EMAIL_FORMAT_MESSAGE
                 ),
-            password: yup.string().required('The field \'password\' is required.')
+            password: yup.string().required(authConstants.AUTH_PASSWORD_REQUIRED_MESSAGE)
         });
     }
 

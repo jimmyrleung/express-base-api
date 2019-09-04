@@ -1,4 +1,5 @@
 const yup = require('yup');
+const { userConstants } = require('../../constants')
 
 module.exports = class User {
     constructor({ name, email, password }, validatePassword = true) {
@@ -9,20 +10,20 @@ module.exports = class User {
 
         let userShape = {
             name: yup.string()
-                .required('The field \'name\' is required.')
-                .min('3', 'The field \'name\' must have at least 3 characters.')
-                .max('50', 'The field \'name\' must have at most 50 characters.'),
+                .required(userConstants.USER_NAME_REQUIRED_MESSAGE)
+                .min(userConstants.USER_NAME_MIN_LENGTH, userConstants.USER_NAME_MIN_LENGTH_MESSAGE)
+                .max(userConstants.USER_NAME_MAX_LENGTH, userConstants.USER_NAME_MAX_LENGTH_MESSAGE),
             email: yup.string()
-                .required('The field \'email\' is required.')
+                .required(userConstants.USER_EMAIL_REQUIRED_MESSAGE)
                 .matches(
                     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
-                    'The field \'email\' isn\'t in a valid format.'
+                    userConstants.USER_EMAIL_FORMAT_MESSAGE
                 )
         }
 
         if (validatePassword) {
             // TODO: define password regex
-            userShape.password = yup.string().required()
+            userShape.password = yup.string().required(userConstants.USER_PASSWORD_REQUIRED_MESSAGE)
         }
 
         this.schema = yup.object().shape(userShape);

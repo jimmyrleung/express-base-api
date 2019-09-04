@@ -1,4 +1,5 @@
 const yup = require('yup');
+const { todoConstants } = require('../../constants');
 
 module.exports = class Todo {
     constructor({ name, description }) {
@@ -8,13 +9,13 @@ module.exports = class Todo {
 
         this.schema = yup.object().shape({
             name: yup.string()
-                .required('The field \'name\' is required.')
-                .min('3', 'The field \'name\' must have at least 3 characters .')
-                .max('50', 'The field \'name\' must have at most 50 characters.'),
+                .required(todoConstants.TODO_NAME_REQUIRED_MESSAGE)
+                .min(todoConstants.TODO_NAME_MIN_LENGTH, todoConstants.TODO_NAME_MIN_LENGTH_MESSAGE)
+                .max(todoConstants.TODO_NAME_MAX_LENGTH, todoConstants.TODO_NAME_MAX_LENGTH_MESSAGE),
             description: yup.string()
-                .required('The field \'description\' is required.')
-                .min('3', 'The field \'description\' must have at least 3 characters .')
-                .max('200', 'The field \'description\' must have at most 200 characters.'),
+                .required(todoConstants.TODO_DESCRIPTION_REQUIRED_MESSAGE)
+                .min(todoConstants.TODO_DESCRIPTION_MIN_LENGTH, todoConstants.TODO_DESCRIPTION_MIN_LENGTH_MESSAGE)
+                .max(todoConstants.TODO_DESCRIPTION_MAX_LENGTH, todoConstants.TODO_DESCRIPTION_MAX_LENGTH_MESSAGE),
         })
     }
 
