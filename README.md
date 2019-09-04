@@ -13,10 +13,12 @@ Starting point for any express api.
 * Domain-driven design
 * Basic authentication using JWT
 * Standardized error handling for api calls
+* Jest basic configuration
+* Domain unit tests
 
 ## Coming up soon
 
-* Jest basic configuration for unit and integration tests
+* Integration tests
 * Logger
 * Mail system through message queuing
 * Nginx or Traefik configuration for the server
