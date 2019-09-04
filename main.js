@@ -1,9 +1,9 @@
 if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config();
+  require('dotenv').config();
 }
 
-const init = require('./src/express'),
-    { redisModule, mongodb } = require('./src/util');
+const init = require('./src/express');
+const { redisModule, mongodb } = require('./src/util');
 
 redisModule.register();
 redisModule.testConnection();

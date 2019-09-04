@@ -6,10 +6,10 @@ const CustomError = require('./CustomError');
 const CustomErrorHandler = require('./CustomErrorHandler');
 
 module.exports = {
-    redisModule,
-    jwt,
-    mongodb,
-    crypto,
-    CustomError,
-    CustomErrorHandler
+  redisModule,
+  jwt,
+  mongodb,
+  crypto,
+  CustomError,
+  CustomErrorHandler,
 };

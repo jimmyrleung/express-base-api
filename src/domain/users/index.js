@@ -3,7 +3,7 @@ const userController = require('./userController');
 const UserModel = require('./UserModel');
 
 module.exports = {
-    User,
-    userController,
-    UserModel,
-}
+  User,
+  userController,
+  UserModel,
+};

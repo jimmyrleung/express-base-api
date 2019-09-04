@@ -2,7 +2,6 @@ const CustomError = require('./CustomError');
 
 module.exports = class CustomErrorHandler {
   /**
-   * 
    * @param {Object} error The thrown error itself
    * @param {Object} res The request pipeline response object
    */
@@ -10,13 +9,12 @@ module.exports = class CustomErrorHandler {
     if (error instanceof CustomError) {
       res.status(error.code).json({
         message: error.message,
-        errorCode: error.errorCode ? error.errorCode : null
+        errorCode: error.errorCode || null,
       });
-    }
-    else {
+    } else {
       res.status(500).json({
-        body: { message: error.message }
+        body: { message: error.message },
       });
     }
-  };
-}
+  }
+};

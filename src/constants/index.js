@@ -4,8 +4,8 @@ const authConstants = require('./auth');
 const todoConstants = require('./todo');
 
 module.exports = {
-    routeConstants,
-    userConstants,
-    authConstants,
-    todoConstants,
-}
+  routeConstants,
+  userConstants,
+  authConstants,
+  todoConstants,
+};
