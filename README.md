@@ -16,11 +16,11 @@ Starting point for any express api.
 
 ## Coming up soon
 
-* Basic authorization with roles
 * Jest basic configuration for unit and integration tests
-* Nginx configuration for the server
 * Logger
 * Mail system through message queuing
+* Nginx or Traefik configuration for the server
+* Basic authorization with roles
 
 ### Discarded
 
