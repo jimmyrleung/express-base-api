@@ -1,14 +1,7 @@
-const dotenv = require('dotenv');
-const path = require('path');
 const { Auth } = require('../../../src/domain/auth');
 const { authConstants } = require('../../../src/constants');
 
 describe('Auth class', () => {
-    beforeAll(() => {
-        // * Configure all environment variables from '.env.test'
-        dotenv.config({ path: path.resolve(process.cwd(), '.env.test') });
-    })
-
     describe('#Validation', () => {
         it("#should be valid when everything is rightly filled", async (done) => {
             const credentials = new Auth({

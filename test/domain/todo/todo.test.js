@@ -1,14 +1,7 @@
-const path = require('path');
-const dotenv = require('dotenv');
 const { todoConstants } = require('../../../src/constants')
 const { Todo } = require('../../../src/domain/todos');
 
 describe('Todo class', () => {
-    beforeAll(() => {
-        // * Configure all environment variables from '.env.test'
-        dotenv.config({ path: path.resolve(process.cwd(), '.env.test') });
-    })
-
     describe('#Validation', () => {
         test("#should be valid when everything is rightly filled", async (done) => {
             const todo = new Todo({

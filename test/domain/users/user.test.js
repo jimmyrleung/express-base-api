@@ -1,14 +1,7 @@
-const path = require('path');
-const dotenv = require('dotenv');
 const { userConstants } = require('../../../src/constants')
 const { User } = require('../../../src/domain/users');
 
 describe('User class', () => {
-    beforeAll(() => {
-        // * Configure all environment variables from '.env.test'
-        dotenv.config({ path: path.resolve(process.cwd(), '.env.test') });
-    })
-
     describe('#Validation', () => {
         test("#should be valid when only the password is missing and the flag 'validatePassword' isn't active", async (done) => {
             const user = new User({
