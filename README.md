@@ -15,12 +15,12 @@ Starting point for any express api.
 * Standardized error handling for api calls
 * Jest basic configuration
 * Domain unit tests
+* Logger  with many logging levels using Winston (includes logger request middleware)
 
 ## Coming up soon
 
-* Integration tests
-* Logger
 * Mail system through message queuing
+* Integration tests
 * Nginx or Traefik configuration for the server
 * Basic authorization with roles
 
