@@ -16,7 +16,7 @@ const create = async (req, res) => {
     await userService.create(user.values);
     return res.status(201).json();
   } catch (err) {
-    console.log(userConstants.CREATE_USER_ERROR_MESSAGE, err);
+    req.logger.error(userConstants.CREATE_USER_ERROR_MESSAGE, err);
     return CustomErrorHandler.handle(err, res);
   }
 };

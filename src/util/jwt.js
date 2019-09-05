@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { serverConfig } = require('../config');
+const logger = require('./logger');
 
 /**
  * @param {Object} payload The JWT payload
@@ -16,6 +17,7 @@ const verify = (token) => {
     const decoded = jwt.verify(token, serverConfig.JWT_SECRET);
     return { valid: true, decoded };
   } catch (err) {
+    logger.error(`Error while trying to verify the token ${token}`, err);
     return { valid: false, decoded: null };
   }
 };
@@ -24,6 +26,7 @@ const decode = (token) => {
   try {
     return jwt.decode(token);
   } catch (err) {
+    logger.error(`Error while trying to decode the token ${token}`, err);
     return null;
   }
 };

@@ -3,6 +3,8 @@ services:
   api:
     build: .
     image: express-base-api
+    volumes:
+      - "C:/volumes/express-base-api/logs:/usr/src/app/logs"
     env_file:
       - docker.env
     ports:

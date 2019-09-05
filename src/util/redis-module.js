@@ -1,5 +1,6 @@
 const redis = require('redis');
 const { redisConfig } = require('../config');
+const logger = require('./logger');
 
 const REDIS_KEY = Symbol.for(redisConfig.SYMBOL);
 
@@ -21,7 +22,11 @@ const get = (key) => {
     const redisClient = global[REDIS_KEY].client;
 
     redisClient.get(key, (err, value) => {
-      if (err) return reject(err);
+      if (err) {
+        logger.error('Error while trying to get value on Redis: ', err);
+        return reject(err);
+      }
+
       return resolve(value);
     });
   });
@@ -32,20 +37,30 @@ const set = (key, value) => {
     const redisClient = global[REDIS_KEY].client;
 
     redisClient.set(key, value, (err) => {
-      if (err) return reject(err);
+      if (err) {
+        logger.error('Error while trying to set value on Redis: ', err);
+        return reject(err);
+      }
       return resolve();
     });
   });
 };
 
 const testConnection = async () => {
+  const messages = {
+    succeeded: 'Redis connection succeeded.',
+    failed: 'Couldn\'t test redis connection: ',
+  };
+
   try {
     await set('test-key', 'test');
 
-    const testValue = await get('test-key');
-    console.log('Redis connection succeeded.');
+    await get('test-key');
+    console.log(messages.succeeded);
+    logger.info(messages.succeeded);
   } catch (ex) {
-    console.log(`Couldn't test redis connection: ${ex}`);
+    console.log(messages.failed, ex);
+    logger.error(messages.failed, ex);
     throw ex;
   }
 };

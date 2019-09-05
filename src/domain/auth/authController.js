@@ -15,7 +15,7 @@ const login = async (req, res) => {
     const token = await authService.login(credentials.values);
     return res.json({ token });
   } catch (err) {
-    console.log('Couldn\'t log the user in.', err);
+    req.logger.error('Couldn\'t log the user in.', err);
     return CustomErrorHandler.handle(err, res);
   }
 };
