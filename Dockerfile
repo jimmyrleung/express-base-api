@@ -15,5 +15,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+# Giving permissions
+RUN chmod +x ./wait-for-it.sh
+
 EXPOSE 3000 9229
-CMD ["npm", "run", "docker"]
+CMD ["./wait-for-it.sh", "-t", "100", "mongo:27017", "--", "npm", "run", "docker"]
