@@ -1,22 +1,18 @@
 const mongoose = require('mongoose');
 const { mongoConfig } = require('../config');
+const { mongoConstants } = require('../constants');
 const logger = require('./logger');
 
 const connect = async () => {
-  const messages = {
-    succeeded: 'MongoDB connection succeeded.',
-    error: 'Error while trying to connect to the database: ',
-  };
-
   try {
     await mongoose.connect(mongoConfig.connectionString, {
       useNewUrlParser: true,
     });
-    logger.info(messages.succeeded);
-    console.log(messages.succeeded);
+    logger.info(mongoConstants.CONNECTION_SUCCEEDED);
+    console.log(mongoConstants.CONNECTION_SUCCEEDED);
   } catch (err) {
-    logger.error(messages.error, err);
-    console.log(messages.error, err);
+    logger.error(mongoConstants.CONNECTION_FAILED, err);
+    console.log(mongoConstants.CONNECTION_FAILED, err);
   }
 };
 
