@@ -13,6 +13,7 @@ services:
     depends_on:
       - redis
       - mongo
+      - rabbitmq
   redis:
     image: redis
     volumes:
@@ -29,3 +30,13 @@ services:
       - "C:/volumes/mongodb_docker/data:/data"
     ports:
       - 27017:27017
+  rabbitmq:
+    image: rabbitmq:3.7.17-management
+    environment:
+    - RABBITMQ_DEFAULT_USER=admin
+    - RABBITMQ_DEFAULT_PASS=admin
+    volumes:
+      - "C:/volumes/rabbitmq:/var/lib/rabbitmq/mnesia"
+    ports:
+      - 15672:15672
+      - 5672:5672
