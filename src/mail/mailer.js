@@ -4,10 +4,10 @@ const nodemailer = require('nodemailer');
 const { logger } = require('../util');
 
 const createTransporter = async () => {
-  // TODO: Create a real mail account
+  // TODO: Create a real mail account and delete the following row
   const testAccount = await nodemailer.createTestAccount();
 
-  // TODO: Replace with a real SMTP Transport configuration
+  // TODO: Then, replace these options with a real SMTP Transport configuration
   const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -49,9 +49,8 @@ const send = async (mailInfo, data) => {
   try {
     const transporter = await createTransporter();
     const template = replaceParams(await readTemplate(mailInfo.template), data);
-
     const result = await transporter.sendMail({
-      from: 'Express base api <noreply@expressbaseapi.com>',
+      from: transporter.transporter.auth.user,
       to: mailInfo.address,
       subject: mailInfo.subject,
       html: template,

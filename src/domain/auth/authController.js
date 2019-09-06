@@ -1,5 +1,5 @@
-const Auth = require('./Auth');
 const moment = require('moment');
+const Auth = require('./Auth');
 const authService = require('./authService');
 const { CustomErrorHandler } = require('../../util');
 const mailer = require('../../mail/mailer');
@@ -14,15 +14,15 @@ const login = async (req, res) => {
   }
 
   try {
-    const token = await authService.login(credentials.values);
+    const { token, name, email } = await authService.login(credentials.values);
     res.json({ token });
 
     return mailer.send({
-      address: 'jimmy.arfs@gmail.com,jimmy.rl19@hotmail.com',
+      address: email,
       subject: 'New account login',
-      template: 'login',
+      template: 'login', // the html file inside "mail/templates"
     }, {
-      name: 'Jimmy Rios Leung',
+      name,
       loginDateString: moment.utc().format('DD/MM/YYYY HH:mm:ss'),
     });
   } catch (err) {

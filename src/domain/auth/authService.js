@@ -13,13 +13,15 @@ const login = async (credentials) => {
   // TODO: Return incorrect password error
   if (user.password !== hash) throw new CustomError('Incorrect username or password', 403);
 
-  const token = jwt.generate({
+  const userInfo = {
     _id: user._id,
     name: user.name,
     email: user.email,
-  });
+  };
 
-  return token;
+  const token = jwt.generate(userInfo);
+
+  return { token, ...userInfo };
 };
 
 module.exports = {
