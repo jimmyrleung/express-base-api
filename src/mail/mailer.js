@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const nodemailer = require('nodemailer');
-const { logger } = require('../util');
+const { logger, amqp } = require('../util');
+const { amqpConstants } = require('../constants');
 
 const createTransporter = async () => {
   // TODO: Create a real mail account and delete the following row
@@ -26,7 +27,7 @@ const readTemplate = async (templateName) => {
     fs.readFile(filePath, 'utf8', (err, fileAsString) => {
       if (err) return reject(err);
       return resolve(fileAsString);
-    })
+    });
   });
 
   const templatePath = await path.resolve(__dirname, 'templates', `${templateName}.html`);
@@ -63,6 +64,28 @@ const send = async (mailInfo, data) => {
   }
 };
 
+const registerConsumer = async () => {
+  await amqp.consume(amqpConstants.MAILER_QUEUE, true,
+    async (message, done) => {
+      // convert the buffer to stringmailer.send
+      const {
+        address,
+        subject,
+        template,
+        data,
+      } = JSON.parse(message.content.toString());
+
+      await send({
+        address,
+        subject,
+        template, // the html file inside "mail/templates"
+      }, data);
+
+      done();
+    });
+};
+
 module.exports = {
   send,
+  registerConsumer,
 };

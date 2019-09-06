@@ -3,10 +3,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const init = require('./src/express');
-const { redisModule, mongodb, amqp } = require('./src/util');
+const { redisModule, mongodb } = require('./src/util');
+const mailer = require('./src/mail/mailer');
 
 redisModule.register();
 redisModule.testConnection();
 mongodb.connect();
-amqp.connect();
+mailer.registerConsumer();
 init();

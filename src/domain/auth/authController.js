@@ -1,8 +1,8 @@
 const moment = require('moment');
 const Auth = require('./Auth');
 const authService = require('./authService');
-const { CustomErrorHandler } = require('../../util');
-const mailer = require('../../mail/mailer');
+const { CustomErrorHandler, amqp } = require('../../util');
+const { amqpConstants } = require('../../constants');
 
 const login = async (req, res) => {
   const credentials = new Auth(req.body);
@@ -17,13 +17,14 @@ const login = async (req, res) => {
     const { token, name, email } = await authService.login(credentials.values);
     res.json({ token });
 
-    return mailer.send({
+    return await amqp.sendJSON(amqpConstants.MAILER_QUEUE, {
       address: email,
       subject: 'New account login',
       template: 'login', // the html file inside "mail/templates"
-    }, {
-      name,
-      loginDateString: moment.utc().format('DD/MM/YYYY HH:mm:ss'),
+      data: {
+        name,
+        loginDateString: moment.utc().format('DD/MM/YYYY HH:mm:ss'),
+      },
     });
   } catch (err) {
     req.logger.error('Couldn\'t log the user in.', err);
