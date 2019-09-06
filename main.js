@@ -3,9 +3,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const init = require('./src/express');
-const { redisModule, mongodb } = require('./src/util');
+const { redisModule, mongodb, amqp } = require('./src/util');
 
 redisModule.register();
 redisModule.testConnection();
 mongodb.connect();
+amqp.connect();
 init();

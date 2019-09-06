@@ -6,6 +6,7 @@ const CustomError = require('./CustomError');
 const CustomErrorHandler = require('./CustomErrorHandler');
 const winston = require('./winston');
 const logger = require('./logger');
+const amqp = require('./amqp');
 
 module.exports = {
   redisModule,
@@ -16,4 +17,5 @@ module.exports = {
   CustomErrorHandler,
   winston,
   logger,
+  amqp,
 };
