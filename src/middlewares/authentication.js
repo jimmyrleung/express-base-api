@@ -1,10 +1,18 @@
 const { jwt } = require('../util');
 
 // TODO: Implement routes strategy using db + cache
-const publicRoutes = ['/login'];
+const publicRoutes = [
+  { method: 'POST', path: '/login' },
+  { method: 'POST', path: '/users' },
+];
+
+const findRoute = (method, path) => publicRoutes.find(
+  route => route.method === method && route.path === path,
+);
 
 const authentication = (req, res, next) => {
-  if (publicRoutes.includes(req.path)) return next();
+  const publicRoute = findRoute(req.method, req.path);
+  if (publicRoute) return next();
 
   const auth = req.headers.authorization;
 
