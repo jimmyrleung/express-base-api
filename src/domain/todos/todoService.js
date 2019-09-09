@@ -31,9 +31,20 @@ const deleteOneByUserId = async (_id, userId) => {
   if (!todo) throw new CustomError(`To do with id ${_id} not found.`, 404);
 };
 
+const updateOneByUserId = async (_id, userId, newValues) => {
+  const todo = await findOneByUserId(_id, userId, false);
+
+  Object.keys(newValues).forEach((k) => {
+    todo[k] = newValues[k];
+  });
+
+  todo.save();
+};
+
 module.exports = {
   create,
   findAllByUserId,
   findOneByUserId,
   deleteOneByUserId,
+  updateOneByUserId,
 };

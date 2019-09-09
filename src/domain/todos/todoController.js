@@ -3,8 +3,6 @@ const todoService = require('./todoService');
 const { todoConstants } = require('../../constants');
 const { CustomErrorHandler } = require('../../util');
 
-const _todos = {};
-
 const getAll = async (req, res) => {
   const { _id } = req.user;
 
@@ -67,12 +65,7 @@ const deleteById = async (req, res) => {
 
 const updateById = async (req, res) => {
   const { id } = req.params;
-
-  if (!_todos[id]) {
-    return res.status(404).json({
-      errors: [`Todo not found for the passed id '${id}'.`],
-    });
-  }
+  const { _id: userId } = req.user;
 
   const todo = new Todo(req.body);
 
@@ -82,8 +75,13 @@ const updateById = async (req, res) => {
     });
   }
 
-  _todos[id] = todo.values;
-  return res.status(200).json();
+  try {
+    await todoService.updateOneByUserId(id, userId, todo.values);
+    return res.status(204).json();
+  } catch (err) {
+    req.logger.error(todoConstants.TODO_UPDATE_ERR_MESSAGE, err);
+    return CustomErrorHandler.handle(err, res);
+  }
 };
 
 module.exports = {

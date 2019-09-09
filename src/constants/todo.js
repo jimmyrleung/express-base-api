@@ -20,5 +20,6 @@ module.exports = {
   TODO_FIND_ALL_BY_USER_ERR_MESSAGE: 'Couln\'t fetch the user\'s to dos.',
   TODO_CREATE_ERR_MESSAGE: 'Couln\'t create a new to do.',
   TODO_DELETE_ERR_MESSAGE: 'Couln\'t delete the passed to do.',
+  TODO_UPDATE_ERR_MESSAGE: 'Couln\'t update the passed to do.',
   TODO_FIND_ONE_BY_USER_ERR_MESSAGE: 'Couln\'t fetch the user\'s specific to do.',
 };
