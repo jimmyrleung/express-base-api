@@ -4,9 +4,10 @@ const express = require('express');
 const app = express();
 const { serverConfig } = require('./config');
 const { registerRoutes } = require('./routes');
-const { authentication, loggerLoader } = require('./middlewares');
+const { authentication, loggerLoader, enableCors } = require('./middlewares');
 
 app.use(bodyParser.json());
+app.use(enableCors);
 app.all('*', loggerLoader, authentication);
 registerRoutes(app);
 
