@@ -14,8 +14,7 @@ docker-compose up -d
 *The API takes 30 seconds to start because it waits MySQL to be ready :)*
 
 \
-**Without docker**\
-
+**Without docker**
 To start the API you need to install and run:
 
 * Redis server (cache)
