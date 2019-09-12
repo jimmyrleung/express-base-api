@@ -19,4 +19,4 @@ COPY . .
 RUN chmod +x ./wait-for-it.sh
 
 EXPOSE 3000 9229
-CMD ["./wait-for-it.sh", "-t", "100", "mongo:27017", "--", "npm", "run", "docker"]
+CMD ["./wait-for-it.sh", "-t", "30", "mongo:27017", "--", "npm", "run", "docker"]

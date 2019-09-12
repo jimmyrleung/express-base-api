@@ -2,6 +2,32 @@
 
 Starting point for any express api.
 
+# Setup
+
+**With docker**\
+To start the API with everything configured just run:
+
+```docker
+docker-compose up -d
+```
+
+*The API takes 30 seconds to start because it waits MySQL to be ready :)*
+
+\
+**Without docker**\
+
+To start the API you need to install and run:
+
+* Redis server (cache)
+* MongoDB server (database)
+* RabbitMQ (queue)
+
+Then, configure the environment variables inside the .env and run:
+
+```npm
+npm start
+```
+
 ## Already implemented
 
 * App server listening on port 3000
