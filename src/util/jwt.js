@@ -12,7 +12,7 @@ const generate = (payload = {}, expiration = 1) => (
   })
 );
 
-const verify = (token) => {
+const verify = token => {
   try {
     const decoded = jwt.verify(token, serverConfig.JWT_SECRET);
     return { valid: true, decoded };
@@ -22,7 +22,7 @@ const verify = (token) => {
   }
 };
 
-const decode = (token) => {
+const decode = token => {
   try {
     return jwt.decode(token);
   } catch (err) {

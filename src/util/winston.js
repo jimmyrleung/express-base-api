@@ -23,7 +23,7 @@ const getCurrentDateLogString = () => moment().format('DD/MM/YYYY HH:mm:ss');
 const getCurrentDateFileString = () => moment().format('YYYY-MM-DD');
 const logsPath = path.resolve(process.cwd(), 'logs', getCurrentDateFileString());
 
-const logsFormat = format((info) => {
+const logsFormat = format(info => {
   let message = `${getCurrentDateLogString()} [${info.level.toUpperCase()}] ${info.message || ''}`;
 
   if (info.level === 'error' && info.stack) {

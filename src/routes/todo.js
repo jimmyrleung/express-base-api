@@ -1,7 +1,7 @@
 const { routeConstants } = require('../constants');
 const { todoController } = require('../domain/todos');
 
-module.exports = (express) => {
+module.exports = express => {
   express.route(routeConstants.TODOS_URL)
     .get(todoController.getAll)
     .post(todoController.create);

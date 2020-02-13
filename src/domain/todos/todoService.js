@@ -34,7 +34,7 @@ const deleteOneByUserId = async (_id, userId) => {
 const updateOneByUserId = async (_id, userId, newValues) => {
   const todo = await findOneByUserId(_id, userId, false);
 
-  Object.keys(newValues).forEach((k) => {
+  Object.keys(newValues).forEach(k => {
     todo[k] = newValues[k];
   });
 

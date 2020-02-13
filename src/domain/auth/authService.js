@@ -1,7 +1,7 @@
 const { jwt, crypto, CustomError } = require('../../util');
 const { UserModel } = require('../users');
 
-const login = async (credentials) => {
+const login = async credentials => {
   const user = await UserModel.findOne({ email: credentials.email });
 
   // TODO: Return user not found error

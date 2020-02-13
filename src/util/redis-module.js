@@ -18,7 +18,7 @@ const register = () => {
   }
 };
 
-const get = (key) => {
+const get = key => {
   return new Promise((resolve, reject) => {
     const redisClient = global[REDIS_KEY].client;
 

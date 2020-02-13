@@ -22,8 +22,8 @@ const createTransporter = async () => {
   return transporter;
 };
 
-const readTemplate = async (templateName) => {
-  const read = (filePath) => new Promise((resolve, reject) => {
+const readTemplate = async templateName => {
+  const read = filePath => new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', (err, fileAsString) => {
       if (err) return reject(err);
       return resolve(fileAsString);
@@ -39,7 +39,7 @@ const readTemplate = async (templateName) => {
 const replaceParams = (originalTemplate, data) => {
   let template = originalTemplate;
 
-  Object.keys(data).forEach((key) => {
+  Object.keys(data).forEach(key => {
     template = template.replace(`{{${key}}}`, data[key]);
   });
 

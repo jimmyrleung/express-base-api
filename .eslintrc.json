@@ -25,6 +25,7 @@
     "no-unused-vars": "warn",
     "no-underscore-dangle": "warn",
     "no-unneeded-ternary": "warn",
+    "arrow-parens": "off",
     "semi": [
       2
     ],
